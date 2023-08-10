@@ -1,0 +1,29 @@
+{
+    "name": "react-tform",
+    "version": "0.0.1",
+    "license": "MIT",
+    "type": "module",
+    "sideEffects": false,
+    "scripts": {
+        "build": "npx typedoc src/index.ts && rollup -c --configPlugin @rollup/plugin-typescript",
+        "watch": "yarn build -w"
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^11.1.0",
+        "@types/react": "^18.2.0",
+        "react-bootstrap": "^2.8.0",
+        "rollup": "^3.21.0",
+        "tslib": "^2.5.0",
+        "typedoc": "^0.24.6",
+        "typescript": "^5.0.4",
+        "react-tform": "link:../react-tform/"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-bootstrap": "^2.8.0",
+        "react-tform": "link:../react-tform/"
+    }
+}
