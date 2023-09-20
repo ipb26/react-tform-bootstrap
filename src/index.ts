@@ -2,6 +2,21 @@
 import { FormCheckProps, FormControlProps } from "react-bootstrap"
 import { FormField } from "react-tform"
 
+export function bsFileProps(field: FormField<FileList | undefined | null, FileList | undefined>): FormControlProps {
+    return {
+        //value: field.value ?? "",
+        //onChange: event => field.setValue(event.currentTarget.value),
+        onChange: event => {
+            if ("files" in event.currentTarget) {
+                field.setValue(event.currentTarget.files ?? undefined)
+                field.commit()
+            }
+        },
+        onFocus: field.focus,
+        onBlur: field.blur,
+        isInvalid: field.hasErrors,
+    }
+}
 export function bsStringProps(field: FormField<string | undefined | null, string>): FormControlProps {
     return {
         value: field.value ?? "",
