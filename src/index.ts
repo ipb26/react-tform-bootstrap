@@ -67,7 +67,7 @@ export function bsCheckProps<V>(field: FormField<V>, trueValue: V, falseValue: V
         isInvalid: field.hasErrors,
     }
 }
-export function bsRadioProps<V>(field: FormField<V>, value: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
+export function bsRadioProps<R, W extends R = R>(field: FormField<R, W>, value: W, comparer: (a: R, b: W) => boolean = (a, b) => a === b): FormCheckProps {
     return {
         checked: comparer(field.value, value),
         onChange: event => {
