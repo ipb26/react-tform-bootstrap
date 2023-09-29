@@ -15,11 +15,11 @@
         "@rollup/plugin-typescript": "^11.1.0",
         "@types/react": "^18.2.0",
         "react-bootstrap": "^2.8.0",
+        "react-tform": "link:../react-tform/",
         "rollup": "^3.21.0",
         "tslib": "^2.5.0",
         "typedoc": "^0.24.6",
-        "typescript": "^5.0.4",
-        "react-tform": "link:../react-tform/"
+        "typescript": "^5.0.4"
     },
     "peerDependencies": {
         "react": "^18.2.0",
