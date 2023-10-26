@@ -1,8 +1,8 @@
 
 import { FormCheckProps, FormControlProps } from "react-bootstrap"
-import { FormField } from "react-tform"
+import { FieldControl } from "react-tform"
 
-export function bsFileProps(field: FormField<FileList | undefined | null, FileList | undefined>): FormControlProps {
+export function bsFileProps(field: FieldControl<FileList | undefined | null, FileList | undefined>): FormControlProps {
     return {
         //value: field.value ?? "",
         //onChange: event => field.setValue(event.currentTarget.value),
@@ -17,7 +17,7 @@ export function bsFileProps(field: FormField<FileList | undefined | null, FileLi
         isInvalid: field.hasErrors,
     }
 }
-export function bsStringProps(field: FormField<string | undefined | null, string>): FormControlProps {
+export function bsStringProps(field: FieldControl<string | undefined | null, string>): FormControlProps {
     return {
         value: field.value ?? "",
         onChange: event => field.setValue(event.currentTarget.value),
@@ -26,7 +26,7 @@ export function bsStringProps(field: FormField<string | undefined | null, string
         isInvalid: field.hasErrors,
     }
 }
-export function bsNumberProps(field: FormField<number | undefined | null, number>): FormControlProps {
+export function bsNumberProps(field: FieldControl<number | undefined | null, number>): FormControlProps {
     return {
         type: "number",
         value: field.value ?? "",
@@ -43,7 +43,7 @@ export function bsNumberProps(field: FormField<number | undefined | null, number
         isInvalid: field.hasErrors,
     }
 }
-export function bsMultiCheckProps<V>(field: FormField<V[]>, currentValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
+export function bsMultiCheckProps<V>(field: FieldControl<V[]>, currentValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
     return {
         checked: field.value.findIndex(_ => comparer(_, currentValue)) != -1,
         onChange: event => {
@@ -55,7 +55,7 @@ export function bsMultiCheckProps<V>(field: FormField<V[]>, currentValue: V, com
         isInvalid: field.hasErrors,
     }
 }
-export function bsCheckProps<V>(field: FormField<V>, trueValue: V, falseValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
+export function bsCheckProps<V>(field: FieldControl<V>, trueValue: V, falseValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
     return {
         checked: comparer(field.value, trueValue),
         onChange: event => {
@@ -67,7 +67,7 @@ export function bsCheckProps<V>(field: FormField<V>, trueValue: V, falseValue: V
         isInvalid: field.hasErrors,
     }
 }
-export function bsRadioProps<R, W extends R = R>(field: FormField<R, W>, value: W, comparer: (a: R, b: W) => boolean = (a, b) => a === b): FormCheckProps {
+export function bsRadioProps<R, W extends R = R>(field: FieldControl<R, W>, value: W, comparer: (a: R, b: W) => boolean = (a, b) => a === b): FormCheckProps {
     return {
         checked: comparer(field.value, value),
         onChange: event => {
