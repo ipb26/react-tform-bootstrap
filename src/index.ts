@@ -12,6 +12,7 @@ export function bsFileProps(field: FieldControl<FileList | undefined | null, Fil
                 field.commit()
             }
         },
+        disabled: field.disabled ?? false,
         onFocus: field.focus,
         onBlur: field.blur,
         isInvalid: field.hasErrors,
@@ -23,6 +24,7 @@ export function bsStringProps(field: FieldControl<string | undefined | null, str
         onChange: event => field.setValue(event.currentTarget.value),
         onFocus: field.focus,
         onBlur: field.blur,
+        disabled: field.disabled ?? false,
         isInvalid: field.hasErrors,
     }
 }
@@ -40,6 +42,7 @@ export function bsNumberProps(field: FieldControl<number | undefined | null, num
         },
         onFocus: field.focus,
         onBlur: field.blur,
+        disabled: field.disabled ?? false,
         isInvalid: field.hasErrors,
     }
 }
@@ -52,6 +55,7 @@ export function bsMultiCheckProps<V>(field: FieldControl<V[]>, currentValue: V, 
         },
         onFocus: field.focus,
         onBlur: field.blur,
+        disabled: field.disabled ?? false,
         isInvalid: field.hasErrors,
     }
 }
@@ -64,6 +68,7 @@ export function bsCheckProps<V>(field: FieldControl<V>, trueValue: V, falseValue
         },
         onFocus: field.focus,
         onBlur: field.blur,
+        disabled: field.disabled ?? false,
         isInvalid: field.hasErrors,
     }
 }
@@ -78,6 +83,7 @@ export function bsRadioProps<R, W extends R = R>(field: FieldControl<R, W>, valu
         },
         onFocus: field.focus,
         onBlur: field.blur,
+        disabled: field.disabled ?? false,
         isInvalid: field.hasErrors,
     }
 }
