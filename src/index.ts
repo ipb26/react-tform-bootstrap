@@ -8,8 +8,7 @@ export function bsFileProps(field: FieldControl<FileList | undefined | null, Fil
         //onChange: event => field.setValue(event.currentTarget.value),
         onChange: event => {
             if ("files" in event.currentTarget) {
-                field.setValue(event.currentTarget.files ?? undefined)
-                field.commit()
+                field.setValueAndCommit(event.currentTarget.files ?? undefined)
             }
         },
         disabled: field.disabled ?? false,
@@ -49,10 +48,7 @@ export function bsNumberProps(field: FieldControl<number | undefined | null, num
 export function bsMultiCheckProps<V>(field: FieldControl<readonly V[]>, currentValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
     return {
         checked: field.value.findIndex(_ => comparer(_, currentValue)) != -1,
-        onChange: event => {
-            field.setValue(event.target.checked ? [...field.value, currentValue] : field.value.filter(_ => !comparer(_, currentValue)))
-            field.commit()
-        },
+        onChange: event => field.setValueAndCommit(event.target.checked ? [...field.value, currentValue] : field.value.filter(_ => !comparer(_, currentValue))),
         onFocus: field.focus,
         onBlur: field.blur,
         disabled: field.disabled ?? false,
@@ -62,10 +58,7 @@ export function bsMultiCheckProps<V>(field: FieldControl<readonly V[]>, currentV
 export function bsCheckProps<V>(field: FieldControl<V>, trueValue: V, falseValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
     return {
         checked: comparer(field.value, trueValue),
-        onChange: event => {
-            field.setValue(event.target.checked ? trueValue : falseValue)
-            field.commit()
-        },
+        onChange: event => field.setValueAndCommit(event.target.checked ? trueValue : falseValue),
         onFocus: field.focus,
         onBlur: field.blur,
         disabled: field.disabled ?? false,
@@ -77,8 +70,7 @@ export function bsRadioProps<R, W extends R = R>(field: FieldControl<R, W>, valu
         checked: comparer(field.value, value),
         onChange: event => {
             if (event.target.checked) {
-                field.setValue(value)
-                field.commit()
+                field.setValueAndCommit(value)
             }
         },
         onFocus: field.focus,
