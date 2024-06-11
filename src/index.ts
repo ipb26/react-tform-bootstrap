@@ -45,10 +45,10 @@ export function bsNumberProps(field: FieldControl<number | undefined | null, num
         isInvalid: field.hasErrors,
     }
 }
-export function bsMultiCheckProps<V>(field: FieldControl<readonly V[]>, currentValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
+export function bsMultiCheckProps<V>(field: FieldControl<readonly V[] | undefined | null, readonly V[]>, currentValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
     return {
-        checked: field.value.findIndex(_ => comparer(_, currentValue)) != -1,
-        onChange: event => field.setValueAndCommit(event.target.checked ? [...field.value, currentValue] : field.value.filter(_ => !comparer(_, currentValue))),
+        checked: field.value?.findIndex(_ => comparer(_, currentValue)) != -1,
+        onChange: event => field.setValueAndCommit(event.target.checked ? [...field.value ?? [], currentValue] : (field.value ?? []).filter(_ => !comparer(_, currentValue))),
         onFocus: field.focus,
         onBlur: field.blur,
         disabled: field.disabled ?? false,
