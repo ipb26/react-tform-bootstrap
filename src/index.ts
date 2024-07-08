@@ -4,8 +4,6 @@ import { FieldControl } from "react-tform"
 
 export function bsFileProps(field: FieldControl<FileList | undefined | null, FileList | undefined>): FormControlProps {
     return {
-        //value: field.value ?? "",
-        //onChange: event => field.setValue(event.currentTarget.value),
         onChange: event => {
             if ("files" in event.currentTarget) {
                 field.setValueAndCommit(event.currentTarget.files ?? undefined)
@@ -47,7 +45,7 @@ export function bsNumberProps(field: FieldControl<number | undefined | null, num
 }
 export function bsMultiCheckProps<V>(field: FieldControl<readonly V[] | undefined | null, readonly V[]>, currentValue: V, comparer: (a: V, b: V) => boolean = (a, b) => a === b): FormCheckProps {
     return {
-        checked: field.value?.findIndex(_ => comparer(_, currentValue)) != -1,
+        checked: (field.value?.findIndex(_ => comparer(_, currentValue)) ?? -1) !== -1,
         onChange: event => field.setValueAndCommit(event.target.checked ? [...field.value ?? [], currentValue] : (field.value ?? []).filter(_ => !comparer(_, currentValue))),
         onFocus: field.focus,
         onBlur: field.blur,
