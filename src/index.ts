@@ -77,5 +77,3 @@ export function bsRadioProps<R, W extends R = R>(field: FieldControl<R, W>, valu
         isInvalid: field.hasErrors,
     }
 }
-
-//TODO select
